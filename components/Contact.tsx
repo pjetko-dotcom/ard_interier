@@ -4,15 +4,14 @@ import { Phone, Mail, MapPin, Send, ChevronDown } from 'lucide-react';
 interface Country {
   code: string;
   prefix: string;
-  flag: string;
   placeholder: string;
 }
 
 const countries: Country[] = [
-  { code: 'SK', prefix: '+421', flag: '🇸🇰', placeholder: '9xx xxx xxx' },
-  { code: 'CZ', prefix: '+420', flag: '🇨🇿', placeholder: '7xx xxx xxx' },
-  { code: 'AT', prefix: '+43', flag: '🇦🇹', placeholder: '6xx xxx xxxx' },
-  { code: 'HU', prefix: '+36', flag: '🇭🇺', placeholder: '20 xxx xxxx' },
+  { code: 'SK', prefix: '+421', placeholder: '9xx xxx xxx' },
+  { code: 'CZ', prefix: '+420', placeholder: '7xx xxx xxx' },
+  { code: 'AT', prefix: '+43', placeholder: '6xx xxx xxxx' },
+  { code: 'HU', prefix: '+36', placeholder: '20 xxx xxxx' },
 ];
 
 export const Contact: React.FC = () => {
@@ -189,16 +188,13 @@ export const Contact: React.FC = () => {
                       aria-label="Select country"
                       aria-expanded={isCountryDropdownOpen}
                     >
-                      <span className="text-lg leading-none" role="img" aria-label={`Flag for ${selectedCountry.code}`}>
-                        {selectedCountry.flag}
-                      </span>
-                      <span className="text-stone-900 font-medium text-sm">{selectedCountry.code}</span>
+                      <span className="text-stone-900 font-medium text-sm">{selectedCountry.prefix}</span>
                       <ChevronDown className={`w-3 h-3 text-stone-500 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`} />
                     </button>
 
                     {/* Dropdown Menu */}
                     {isCountryDropdownOpen && (
-                      <div className="absolute top-full left-0 mt-1 bg-white border border-stone-300 rounded-lg shadow-lg z-20 min-w-[140px]">
+                      <div className="absolute top-full left-0 mt-1 bg-white border border-stone-300 rounded-lg shadow-lg z-20 min-w-[120px]">
                         {countries.map((country) => (
                           <button
                             key={country.code}
@@ -208,9 +204,6 @@ export const Contact: React.FC = () => {
                               selectedCountry.code === country.code ? 'bg-wood-100 font-semibold' : ''
                             }`}
                           >
-                            <span className="text-lg leading-none" role="img" aria-label={`Flag for ${country.code}`}>
-                              {country.flag}
-                            </span>
                             <span className="text-stone-900">{country.code}</span>
                             <span className="text-stone-500 text-xs ml-auto">{country.prefix}</span>
                           </button>
