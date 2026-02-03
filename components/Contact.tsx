@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Phone, Mail, MapPin, Send, ChevronDown } from 'lucide-react';
 
 interface Country {
@@ -17,6 +17,8 @@ const countries: Country[] = [
 
 export const Contact: React.FC = () => {
   const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Form State
   const [formData, setFormData] = useState({
@@ -32,6 +34,20 @@ export const Contact: React.FC = () => {
     phone: '',
     email: ''
   });
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsCountryDropdownOpen(false);
+      }
+    };
+
+    if (isCountryDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isCountryDropdownOpen]);
 
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -53,9 +69,9 @@ export const Contact: React.FC = () => {
     }
   };
 
-  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const country = countries.find(c => c.prefix === e.target.value);
-    if (country) setSelectedCountry(country);
+  const handleCountrySelect = (country: Country) => {
+    setSelectedCountry(country);
+    setIsCountryDropdownOpen(false);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -164,22 +180,43 @@ export const Contact: React.FC = () => {
                 <label htmlFor="phone" className="block text-sm font-semibold text-stone-700 mb-2">Telefón</label>
                 <div className={`relative flex rounded-lg shadow-sm border transition-all focus-within:ring-2 focus-within:ring-wood-500 focus-within:border-wood-500 ${errors.phone ? 'border-red-500' : 'border-stone-300'}`}>
                   
-                  {/* Custom Select for Country */}
-                  <div className="relative inset-y-0 left-0 flex items-center bg-stone-50 rounded-l-lg border-r border-stone-300">
-                    <select
-                      value={selectedCountry.prefix}
-                      onChange={handleCountryChange}
-                      className="h-full py-3 pl-3 pr-8 bg-transparent text-stone-900 font-medium rounded-l-lg focus:ring-0 border-transparent cursor-pointer appearance-none outline-none z-10"
-                      aria-label="Country Code"
+                  {/* Custom Country Selector Dropdown */}
+                  <div className="relative" ref={dropdownRef}>
+                    <button
+                      type="button"
+                      onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                      className="h-full py-3 px-3 bg-stone-50 rounded-l-lg border-r border-stone-300 flex items-center gap-1 hover:bg-stone-100 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-wood-500 focus:ring-inset"
+                      aria-label="Select country"
+                      aria-expanded={isCountryDropdownOpen}
                     >
-                      {countries.map((country) => (
-                        <option key={country.code} value={country.prefix}>
-                           {country.flag} {country.code} ({country.prefix})
-                        </option>
-                      ))}
-                    </select>
-                    {/* Visual Chevron */}
-                    <ChevronDown className="absolute right-2 w-4 h-4 text-stone-500 pointer-events-none z-0" />
+                      <span className="text-lg leading-none" role="img" aria-label={`Flag for ${selectedCountry.code}`}>
+                        {selectedCountry.flag}
+                      </span>
+                      <span className="text-stone-900 font-medium text-sm">{selectedCountry.code}</span>
+                      <ChevronDown className={`w-3 h-3 text-stone-500 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    {isCountryDropdownOpen && (
+                      <div className="absolute top-full left-0 mt-1 bg-white border border-stone-300 rounded-lg shadow-lg z-20 min-w-[140px]">
+                        {countries.map((country) => (
+                          <button
+                            key={country.code}
+                            type="button"
+                            onClick={() => handleCountrySelect(country)}
+                            className={`w-full px-3 py-2 text-left flex items-center gap-2 hover:bg-wood-50 transition-colors ${
+                              selectedCountry.code === country.code ? 'bg-wood-100 font-semibold' : ''
+                            }`}
+                          >
+                            <span className="text-lg leading-none" role="img" aria-label={`Flag for ${country.code}`}>
+                              {country.flag}
+                            </span>
+                            <span className="text-stone-900">{country.code}</span>
+                            <span className="text-stone-500 text-xs ml-auto">{country.prefix}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Phone Input */}

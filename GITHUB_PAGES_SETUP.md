@@ -45,8 +45,6 @@ git branch -M main
 git push -u origin main
 ```
 
-**❗ Nahraď `TVOJE_UZIVATEL` svojím GitHub username!**
-
 ---
 
 ## ⚙️ Krok 4: Nastaviť GitHub Pages
@@ -121,7 +119,7 @@ git push
 
 ## 📱 Krok 5: Aktivovať GitHub Pages v Settings
 
-1. Choď na https://github.com/TVOJE_UZIVATEL/ard_interier/settings
+1. Choď na https://github.com/pjetko-dotcom/ard_interier/settings
 2. V ľavom menu klikni: **"Pages"**
 3. Nastav:
    - **Source**: `Deploy from a branch`
@@ -134,7 +132,7 @@ git push
 ## ✅ Krok 6: Skontrolovať Deployment
 
 - Čakaj 1-2 minúty
-- Tvoj web bude dostupný na: **`https://TVOJE_UZIVATEL.github.io/ard_interier/`**
+- Tvoj web bude dostupný na: **`https://github.com/pjetko-dotcom/ard_interier/`**
 
 ---
 
@@ -181,5 +179,5 @@ npm run build
 ✅ `package.json` má deploy script  
 ✅ `gh-pages` balíček je nainštalovaný  
 
-**Teraz stačí len pushnutí na GitHub a nastaviť Pages! 🎉**
+**Teraz stačí len pushnúť na GitHub a nastaviť Pages! 🎉**
 
