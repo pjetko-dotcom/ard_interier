@@ -20,7 +20,7 @@ export const Services: React.FC = () => {
           <h2 className="text-wood-600 font-semibold tracking-wide uppercase text-sm mb-2">Čo ponúkame</h2>
           <h3 className="text-3xl md:text-4xl font-bold text-stone-850">Naše služby</h3>
           <p className="mt-4 max-w-2xl text-xl text-stone-600 mx-auto">
-            Komplexné stolárske riešenia od zamerania cez výrobu až po odbornú montáž.
+            Od inovatívneho návrhu po dokonalú realizáciu. Spájame tvorivý dizajn s bezchybným spracovaním.
           </p>
         </div>
 

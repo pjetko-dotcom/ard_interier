@@ -18,12 +18,11 @@ export const Hero: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left pt-20">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight mb-6 drop-shadow-lg">
-          Stolárstvo Bratislava <br className="hidden sm:block" />
-          <span className="text-wood-300">kuchyne a nábytok</span> na mieru
+          Exkluzívne riešenia <br className="hidden sm:block" />
+          <span className="text-wood-300">interiérov na mieru</span>
         </h1>
         <p className="mt-4 text-xl text-stone-100 max-w-2xl sm:mx-0 mx-auto drop-shadow-md mb-8 leading-relaxed">
-          Od návrhu až po realizáciu. Vytvárame jedinečné interiéry s dôrazom na detail,
-          funkčnosť a dlhú životnosť v Bratislave a okolí.
+          ARD Interier prináša originálne návrhy a precíznu realizáciu, ktoré premenia každý priestor na jedinečné miesto plné štýlu a funkčnosti.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
           <a
