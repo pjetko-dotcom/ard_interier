@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
               ARD<span className="text-wood-500">Interiér</span>
             </span>
             <p className="mt-4 text-sm max-w-xs">
-              Váš partner pre kvalitný nábytok na mieru v Bratislave a okolí. 
+              Váš partner pre kvalitný interiérovýdizajn a nábytok na mieru v Bratislave a okolí. 
               Tradičné remeslo, moderný dizajn.
             </p>
           </div>
