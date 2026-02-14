@@ -39,7 +39,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+        sans: ['system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
       },
       spacing: {
         128: '32rem',

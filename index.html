@@ -52,63 +52,7 @@
     }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              wood: {
-                50: '#fbf7f3',
-                100: '#f5efe6',
-                200: '#eadbc8',
-                300: '#dec7aa',
-                400: '#d2b48c', // Tan/Wood base
-                500: '#b8926a',
-                600: '#9c7653',
-                700: '#7f5c42',
-                800: '#694a38',
-                900: '#563e32',
-              },
-              stone: {
-                850: '#2d2a26',
-              }
-            },
-            fontFamily: {
-              sans: ['Inter', 'system-ui', 'sans-serif'],
-            },
-          },
-        },
-      }
-    </script>
-    <style>
-      /* Smooth scrolling for anchor links */
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: 'Inter', sans-serif;
-      }
-      /* Hide scrollbar for carousel but keep functionality */
-      .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-      }
-      .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-wood-50 text-stone-800 antialiased">
     <div id="root"></div>
