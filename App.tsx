@@ -7,7 +7,6 @@ const Services = lazy(() => import('./components/Services').then(m => ({ default
 const Realizations = lazy(() => import('./components/Realizations').then(m => ({ default: m.Realizations })));
 const About = lazy(() => import('./components/About').then(m => ({ default: m.About })));
 const Gallery = lazy(() => import('./components/Gallery').then(m => ({ default: m.Gallery })));
-const References = lazy(() => import('./components/References').then(m => ({ default: m.References })));
 const Contact = lazy(() => import('./components/Contact').then(m => ({ default: m.Contact })));
 const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
 
@@ -38,9 +37,6 @@ function App() {
         </Suspense>
         <Suspense fallback={<div className="min-h-screen bg-stone-100" />}>
           <Gallery />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-screen bg-white" />}>
-          <References />
         </Suspense>
         <Suspense fallback={<div className="min-h-screen bg-stone-50" />}>
           <Contact />
