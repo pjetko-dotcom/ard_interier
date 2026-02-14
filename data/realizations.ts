@@ -8,7 +8,6 @@ export const realizations: RealizationItem[] = [
     title: 'Moderná kuchyňa v rodinnom dome',
     category: 'Bytový dizajn',
     categoryKey: 'residential',
-    location: 'Bratislava - Ružinov'
   },
   { 
     id: 2, 
@@ -16,7 +15,6 @@ export const realizations: RealizationItem[] = [
     title: 'Vstavaná skriňa a chodba', 
     category: 'Úložné priestory', 
     categoryKey: 'residential',
-    location: 'Pezinok' 
   },
   {
     id: 3,
@@ -24,7 +22,6 @@ export const realizations: RealizationItem[] = [
     title: 'Luxusná obývačka',
     category: 'Bytový dizajn',
     categoryKey: 'residential',
-    location: 'Bratislava - Staré Mesto'
   },
   {
     id: 7,
@@ -32,15 +29,13 @@ export const realizations: RealizationItem[] = [
     title: 'Detská izba na mieru',
     category: 'Bytový dizajn',
     categoryKey: 'residential',
-    location: 'Stupava'
   },
   {
     id: 9,
     image: 'images/realization-9.jpg',
     title: 'Kúpeľňový nábytok',
     category: 'Kúpeľne',
-    categoryKey: 'residential',
-    location: 'Bratislava - Koliba'
+    categoryKey: 'residential', 
   },
   {
     id: 10,
@@ -48,7 +43,6 @@ export const realizations: RealizationItem[] = [
     title: 'Knižnica v podkroví',
     category: 'Interiér',
     categoryKey: 'residential',
-    location: 'Modra'
   },
   { 
     id: 12, 
@@ -56,7 +50,6 @@ export const realizations: RealizationItem[] = [
     title: 'Šatník walk-in', 
     category: 'Úložné priestory', 
     categoryKey: 'residential',
-    location: 'Dunajská Lužná' 
   },
 
   // Kancelárie a verejné priestory (Commercial)
@@ -66,7 +59,6 @@ export const realizations: RealizationItem[] = [
     title: 'Kancelárske priestory Business',
     category: 'Kancelárie',
     categoryKey: 'commercial',
-    location: 'Trnava'
   },
   {
     id: 6,
@@ -74,7 +66,6 @@ export const realizations: RealizationItem[] = [
     title: 'Interiér Reštaurácie a Baru',
     category: 'Verejné priestory',
     categoryKey: 'commercial',
-    location: 'Bratislava'
   },
   {
     id: 8,
@@ -82,7 +73,6 @@ export const realizations: RealizationItem[] = [
     title: 'Recepcia hotela',
     category: 'Verejné priestory',
     categoryKey: 'commercial',
-    location: 'Piešťany'
   },
   {
     id: 11,
@@ -90,22 +80,19 @@ export const realizations: RealizationItem[] = [
     title: 'Zasadacia miestnosť',
     category: 'Kancelárie',
     categoryKey: 'commercial',
-    location: 'Bratislava'
   },
   {
     id: 13,
-    image: 'images/realization-13.jpg', // Placeholder ID
+    image: 'images/realization-13.jpg',
     title: 'Zariadenie predajne',
     category: 'Obchodné priestory',
     categoryKey: 'commercial',
-    location: 'Nitra'
   },
   { 
     id: 14, 
-    image: 'images/realization-14.jpg', // Placeholder ID
+    image: 'images/realization-14.jpg', 
     title: 'Advokátska kancelária', 
     category: 'Kancelárie', 
     categoryKey: 'commercial',
-    location: 'Bratislava - Centrum' 
   },
 ];
