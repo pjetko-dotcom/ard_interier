@@ -7,7 +7,6 @@ const navigation = [
   { name: 'Realizácie', href: '#realizations' },
   { name: 'O nás', href: '#about' },
   { name: 'Galéria', href: '#gallery' },
-  { name: 'Referencie', href: '#references' },
   { name: 'Kontakt', href: '#contact' },
 ];
 
