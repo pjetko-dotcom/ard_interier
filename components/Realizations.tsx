@@ -1,5 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { getImageUrl } from '../utils';
 
 export const Realizations: React.FC = () => {
@@ -70,23 +72,40 @@ export const Realizations: React.FC = () => {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          slidesPerView={1}
+          spaceBetween={32}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+            }
+          }}
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          className="pb-12"
+        >
           {featured.map((item) => (
-            <div key={item.id} className="group relative overflow-hidden rounded-2xl cursor-pointer shadow-lg aspect-[4/3]">
-              <img
-                src={getImageUrl(item.img)}
-                alt={`Ukážka realizácie: ${item.title} - ${item.desc}`}
-                onError={handleImageError}
-                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90 transition-opacity" />
-              <div className="absolute bottom-0 left-0 p-8">
-                <h4 className="text-2xl font-bold text-white mb-1">{item.title}</h4>
-                <p className="text-wood-200 font-medium">{item.desc}</p>
+            <SwiperSlide key={item.id}>
+              <div className="group relative overflow-hidden rounded-2xl cursor-pointer shadow-lg aspect-[4/3]">
+                <img
+                  src={getImageUrl(item.img)}
+                  alt={`Ukážka realizácie: ${item.title} - ${item.desc}`}
+                  onError={handleImageError}
+                  className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90 transition-opacity" />
+                <div className="absolute bottom-0 left-0 p-8">
+                  <h4 className="text-2xl font-bold text-white mb-1">{item.title}</h4>
+                  <p className="text-wood-200 font-medium">{item.desc}</p>
+                </div>
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
 
         <div className="mt-8 text-center md:hidden">
            <a href="#gallery" className="inline-flex items-center text-wood-600 font-medium hover:text-wood-800">

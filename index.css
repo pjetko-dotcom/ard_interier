@@ -1,3 +1,8 @@
+/* Swiper CSS */
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -137,3 +142,32 @@ button, [role="button"] {
 button:disabled, [role="button"][aria-disabled="true"] {
   @apply opacity-50 cursor-not-allowed;
 }
+
+/* Swiper customization */
+.swiper-pagination-bullet {
+  @apply bg-stone-400 opacity-60 transition-all;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-wood-600 opacity-100;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply text-wood-600 w-10 h-10;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  @apply text-xl;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  @apply text-wood-800;
+}
+
+.swiper-button-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
