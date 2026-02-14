@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-stone-50 text-stone-800 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-wood-600 text-white rounded-md hover:bg-wood-700 transition-colors;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 border border-wood-600 text-wood-600 rounded-md hover:bg-wood-50 transition-colors;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-stone-850;
+  }
+
+  .section-subtitle {
+    @apply text-wood-600 font-semibold tracking-wide uppercase text-sm;
+  }
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-all duration-300;
+}
+
+/* Scroll animations */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Override inline CSS from HTML */
+@layer base {
+  body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+  }
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-stone-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-wood-600 rounded-lg;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-wood-700;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-color: rgb(162, 125, 79) rgb(245, 240, 235);
+  scrollbar-width: thin;
+}
+
+/* Utility classes */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Selection styling */
+::selection {
+  @apply bg-wood-600 text-white;
+}
+
+::-moz-selection {
+  @apply bg-wood-600 text-white;
+}
+
+/* Focus visible styling */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-wood-600;
+}
+
+/* Placeholder styling */
+::placeholder {
+  @apply text-stone-500;
+}
+
+/* Image styling */
+img {
+  @apply max-w-full h-auto;
+}
+
+/* Link styling */
+a {
+  @apply text-wood-600 hover:text-wood-800 transition-colors;
+}
+
+a:focus-visible {
+  @apply outline-2 outline-offset-2 outline-wood-600;
+}
+
+/* Button reset */
+button, [role="button"] {
+  @apply cursor-pointer;
+}
+
+button:disabled, [role="button"][aria-disabled="true"] {
+  @apply opacity-50 cursor-not-allowed;
+}

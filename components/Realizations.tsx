@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { getImageUrl } from '../utils';
 
 export const Realizations: React.FC = () => {
   // Static placeholders for featured section, distinct from Gallery
@@ -8,20 +9,20 @@ export const Realizations: React.FC = () => {
       id: 1,
       title: "Kompletný interiér domu",
       desc: "Záhorská Bystrica",
-      img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800"
+      img: "/images/realization-featured-1.jpg"
     },
     {
       id: 2,
       title: "Dizajnová kuchyňa",
       desc: "Bratislava Centrum",
-      img: "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&q=80&w=800"
+      img: "/images/realization-featured-2.jpg"
     }
   ];
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const img = e.target as HTMLImageElement;
     // Fallback image (another kitchen interior) if the main one fails
-    img.src = "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800";
+    img.src = getImageUrl("/images/realization-featured-fallback.jpg");
   };
 
   // JSON-LD Schema for Featured Projects
@@ -73,7 +74,7 @@ export const Realizations: React.FC = () => {
           {featured.map((item) => (
             <div key={item.id} className="group relative overflow-hidden rounded-2xl cursor-pointer shadow-lg aspect-[4/3]">
               <img
-                src={item.img}
+                src={getImageUrl(item.img)}
                 alt={`Ukážka realizácie: ${item.title} - ${item.desc}`}
                 onError={handleImageError}
                 className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"

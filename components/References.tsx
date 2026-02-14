@@ -1,12 +1,13 @@
 import React from 'react';
 import { references } from '../data/references';
 import { Quote } from 'lucide-react';
+import { getImageUrl } from '../utils';
 
 export const References: React.FC = () => {
   return (
     <section id="references" className="py-20 bg-wood-900 text-white relative overflow-hidden">
       {/* Decorative texture */}
-      <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')]"></div>
+      <div className="absolute inset-0 opacity-10" style={{backgroundImage: `url('${getImageUrl("/images/wood-pattern.png")}')`, backgroundSize: 'cover'}}></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">

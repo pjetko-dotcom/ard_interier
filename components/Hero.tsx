@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { getImageUrl } from '../utils';
 
 export const Hero: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ export const Hero: React.FC = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000"
+          src={getImageUrl("/images/hero-bg.jpg")}
           alt="Moderný interiér obývačky - ukážka práce ARD Interiér"
           className="w-full h-full object-cover"
         />

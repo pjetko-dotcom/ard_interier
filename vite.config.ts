@@ -4,8 +4,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
-    // For Websupport: use /react_web/ - can override via VITE_BASE_URL
-    const base = process.env.VITE_BASE_URL || '/react_web/';
+    // For dev: use / (root), for production on Websupport: use /react_web/
+    const base = mode === 'development' ? '/' : '/react_web/';
     return {
       base: base,
       server: {

@@ -73,7 +73,7 @@ export const Contact: React.FC = () => {
     setIsCountryDropdownOpen(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation
@@ -91,19 +91,39 @@ export const Contact: React.FC = () => {
       return;
     }
 
-    // Simulate form submission
-    setFormStatus('success');
+    // Prepare form data with full phone number
     const fullPhoneNumber = `${selectedCountry.prefix} ${formData.phoneSuffix.replace(/\s/g, '')}`;
     
-    console.log("Form submitted:", {
-        ...formData,
-        fullPhoneNumber
-    });
-    
-    // Reset form but keep country
-    setFormData({ name: '', phoneSuffix: '', email: '', message: '' });
-    
-    setTimeout(() => setFormStatus('idle'), 3000);
+    try {
+      const response = await fetch('/api/send-contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: fullPhoneNumber,
+          message: formData.message
+        })
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setFormStatus('success');
+        // Reset form but keep country
+        setFormData({ name: '', phoneSuffix: '', email: '', message: '' });
+        setTimeout(() => setFormStatus('idle'), 3000);
+      } else {
+        setFormStatus('error');
+        setTimeout(() => setFormStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setFormStatus('error');
+      setTimeout(() => setFormStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -126,7 +146,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div className="ml-4">
                   <h4 className="text-lg font-bold text-stone-800">Telefón</h4>
-                  <p className="text-stone-600 mt-1 font-medium">+421 9xx xxx xxx</p>
+                  <p className="text-stone-600 mt-1 font-medium"><a href="tel:+421917925011" className="hover:text-wood-600 transition-colors">+421 917 925 011</a></p>
                   <p className="text-sm text-stone-400 mt-1">Po-Pi: 8:00 - 17:00</p>
                 </div>
               </div>
@@ -261,9 +281,12 @@ export const Contact: React.FC = () => {
               {/* Submit Button */}
               <button 
                 type="submit" 
-                className={`w-full flex justify-center items-center px-6 py-4 border border-transparent text-lg font-medium rounded-xl text-white transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wood-500 ${formStatus === 'success' ? 'bg-green-600 hover:bg-green-700' : 'bg-wood-600 hover:bg-wood-700'}`}
+                disabled={formStatus !== 'idle'}
+                className={`w-full flex justify-center items-center px-6 py-4 border border-transparent text-lg font-medium rounded-xl text-white transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wood-500 disabled:opacity-75 disabled:cursor-not-allowed disabled:hover:shadow-lg disabled:transform-none ${
+                  formStatus === 'success' ? 'bg-green-600' : formStatus === 'error' ? 'bg-red-600' : 'bg-wood-600 hover:bg-wood-700'
+                }`}
               >
-                {formStatus === 'success' ? 'Odoslané ✓' : (
+                {formStatus === 'success' ? 'Odoslané ✓' : formStatus === 'error' ? 'Chyba - skúste neskôr' : (
                   <>
                     Odoslať nezáväzný dopyt <Send className="ml-2 w-5 h-5" />
                   </>

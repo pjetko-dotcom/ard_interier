@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, TouchEvent } from 'react';
 import { realizations } from '../data/realizations';
 import { ChevronLeft, ChevronRight, X, ZoomIn, LayoutGrid, Home, Building2 } from 'lucide-react';
+import { getImageUrl } from '../utils';
 
 type FilterType = 'all' | 'residential' | 'commercial';
 
@@ -99,7 +100,7 @@ export const Gallery: React.FC = () => {
   
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
       const img = e.target as HTMLImageElement;
-      img.src = `https://picsum.photos/seed/${Math.random()}/800/600`;
+      img.src = getImageUrl(`/images/realization-featured-fallback.jpg`);
   };
 
   // JSON-LD Schema Generation for SEO
@@ -114,7 +115,7 @@ export const Gallery: React.FC = () => {
       "item": {
         "@type": "CreativeWork",
         "name": item.title,
-        "image": `https://ardinterier.sk${item.image}`,
+        "image": item.image,
         "description": `Realizácia kategórie ${item.category} v lokalite ${item.location || 'Bratislava'}`,
         "genre": item.category,
         "creator": {
@@ -213,7 +214,7 @@ export const Gallery: React.FC = () => {
             >
               <div className="aspect-[4/3] overflow-hidden bg-stone-200">
                 <img 
-                  src={getImageUrl(item.image, item.id)}
+                  src={getImageUrl(item.image)}
                   alt={`Realizácia ARD Interiér: ${item.title} - ${item.category}`}
                   onError={handleImageError}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -267,7 +268,7 @@ export const Gallery: React.FC = () => {
 
           <div className="max-w-5xl max-h-[85vh] w-full flex flex-col items-center">
             <img 
-              src={filteredItems[lightboxIndex].image}
+              src={getImageUrl(filteredItems[lightboxIndex].image)}
               onError={handleImageError}
               alt={`Realizácia ARD Interiér: ${filteredItems[lightboxIndex].title} - ${filteredItems[lightboxIndex].category}`}
               className="max-h-[75vh] w-auto max-w-full object-contain rounded-sm shadow-2xl"
