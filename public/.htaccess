@@ -1,0 +1,46 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /react_web/
+  
+  # Don't rewrite existing files or directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  
+  # Don't rewrite API calls
+  RewriteCond %{REQUEST_URI} ^/react_web/api/
+  RewriteRule ^ - [L]
+  
+  # Don't rewrite static directories
+  RewriteCond %{REQUEST_URI} !^/react_web/assets/
+  RewriteCond %{REQUEST_URI} !^/react_web/images/
+  RewriteCond %{REQUEST_URI} !^/react_web/public/
+  
+  # Rewrite all other requests to index.html for React Router
+  RewriteRule ^ /react_web/index.html [QSA,L]
+</IfModule>
+
+# Enable gzip compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Cache headers
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# MIME types
+<IfModule mod_mime.c>
+  AddType application/json .json
+  AddType application/javascript .js
+  AddType text/css .css
+  AddType image/webp .webp
+</IfModule>

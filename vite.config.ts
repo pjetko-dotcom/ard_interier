@@ -4,8 +4,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
+    // For Websupport: use /react_web/ - can override via VITE_BASE_URL
+    const base = process.env.VITE_BASE_URL || '/react_web/';
     return {
-      base: '/ard_interier/',
+      base: base,
       server: {
         port: 3000,
         host: '0.0.0.0',
