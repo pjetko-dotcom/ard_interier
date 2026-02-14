@@ -93,14 +93,10 @@ export const Gallery: React.FC = () => {
     return items;
   };
 
-  // Helper for image fallback
-  const getImageUrl = (path: string, id: number) => {
-      return path; 
-  };
-  
+    // Helper for image fallback
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
       const img = e.target as HTMLImageElement;
-      img.src = getImageUrl(`images/realization-featured-fallback.jpg`);
+      img.src = getImageUrl('images/realization-featured-fallback.jpg');
   };
 
   // JSON-LD Schema Generation for SEO
