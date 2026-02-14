@@ -84,7 +84,7 @@ export const realizations: RealizationItem[] = [
   {
     id: 13,
     image: 'images/realization-13.jpg',
-    title: 'Zariadenie predajne',
+    title: 'Zariadenie kaviarne',
     category: 'Obchodné priestory',
     categoryKey: 'commercial',
   },
