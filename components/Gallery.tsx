@@ -100,7 +100,7 @@ export const Gallery: React.FC = () => {
   
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
       const img = e.target as HTMLImageElement;
-      img.src = getImageUrl(`/images/realization-featured-fallback.jpg`);
+      img.src = getImageUrl(`images/realization-featured-fallback.jpg`);
   };
 
   // JSON-LD Schema Generation for SEO

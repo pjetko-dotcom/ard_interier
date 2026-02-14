@@ -11,7 +11,7 @@ export const About: React.FC = () => {
           <div className="relative">
             <div className="aspect-[4/5] w-3/4 bg-wood-100 rounded-2xl overflow-hidden ml-auto">
               <img 
-                src={getImageUrl("/images/about-main.jpg")} 
+                src={getImageUrl("images/about-main.jpg")} 
                 alt="Detail precízne spracovaného dreveného nábytku od ARD Interiér" 
                 className="w-full h-full object-cover"
               />
@@ -19,7 +19,7 @@ export const About: React.FC = () => {
             <div className="absolute bottom-12 left-0 aspect-square w-1/2 bg-white p-2 rounded-2xl shadow-xl">
                <div className="w-full h-full rounded-xl overflow-hidden">
                  <img 
-                  src={getImageUrl("/images/about-workshop.jpg")} 
+                  src={getImageUrl("images/about-workshop.jpg")} 
                   alt="Pohľad do stolárskej dielne ARD Interiér" 
                   className="w-full h-full object-cover"
                  />

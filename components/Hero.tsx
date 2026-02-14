@@ -8,7 +8,7 @@ export const Hero: React.FC = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src={getImageUrl("/images/hero-bg.jpg")}
+          src={getImageUrl("images/hero-bg.jpg")}
           alt="Moderný interiér obývačky - ukážka práce ARD Interiér"
           className="w-full h-full object-cover"
         />

@@ -9,20 +9,20 @@ export const Realizations: React.FC = () => {
       id: 1,
       title: "Kompletný interiér domu",
       desc: "Záhorská Bystrica",
-      img: "/images/realization-featured-1.jpg"
+      img: "images/realization-featured-1.jpg"
     },
     {
       id: 2,
       title: "Dizajnová kuchyňa",
       desc: "Bratislava Centrum",
-      img: "/images/realization-featured-2.jpg"
+      img: "images/realization-featured-2.jpg"
     }
   ];
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const img = e.target as HTMLImageElement;
     // Fallback image (another kitchen interior) if the main one fails
-    img.src = getImageUrl("/images/realization-featured-fallback.jpg");
+    img.src = getImageUrl("images/realization-featured-fallback.jpg");
   };
 
   // JSON-LD Schema for Featured Projects
