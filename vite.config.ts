@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
             drop_console: true,
           },
         },
+        emptyOutDir: false,
         rollupOptions: {
           output: {
             manualChunks: {
