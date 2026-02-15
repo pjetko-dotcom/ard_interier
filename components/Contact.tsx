@@ -157,6 +157,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div className="ml-4">
                   <h4 className="text-lg font-bold text-stone-800">Telefón</h4>
+                  <p className="text-sm text-stone-500 mt-1">Radoslav Tkáč</p>
                   <p className="text-stone-600 mt-1 font-medium"><a href="tel:+421917925011" className="hover:text-wood-600 transition-colors">+421 917 925 011</a></p>
                   <p className="text-sm text-stone-400 mt-1">Po-Pi: 8:00 - 17:00</p>
                 </div>
@@ -178,8 +179,20 @@ export const Contact: React.FC = () => {
                   <MapPin size={24} />
                 </div>
                 <div className="ml-4">
-                  <h4 className="text-lg font-bold text-stone-800">Adresa dielne</h4>
-                  <p className="text-stone-600 mt-1">Priemyselná ulica 123<br/>821 09 Bratislava</p>
+                  <h4 className="text-lg font-bold text-stone-800">Sídlo</h4>
+                  <p className="text-stone-600 mt-1">Mudrochova 13/7479<br/>Bratislava<br/>83106</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <div className="flex-shrink-0 bg-wood-100 p-3 rounded-xl text-wood-700">
+                  <Send size={24} />
+                </div>
+                <div className="ml-4">
+                  <h4 className="text-lg font-bold text-stone-800">Fakturačné údaje</h4>
+                  <p className="text-stone-600 mt-1">IČO: 454000857</p>
+                  <p className="text-stone-600">DIČ: 2022971555</p>
+                  <p className="text-stone-600">IČ DPH: SK2022971555</p>
                 </div>
               </div>
             </div>
