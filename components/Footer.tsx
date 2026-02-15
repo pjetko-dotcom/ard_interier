@@ -43,7 +43,6 @@ export const Footer: React.FC = () => {
         
         <div className="border-t border-stone-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
           <p>&copy; {new Date().getFullYear()} ARD Interiér. Všetky práva vyhradené.</p>
-          <p className="mt-2 md:mt-0">Vytvorené pre demonštračné účely.</p>
         </div>
       </div>
     </footer>

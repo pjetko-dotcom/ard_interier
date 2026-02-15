@@ -4,8 +4,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
-    // For dev: use / (root), for production on Websupport: use /react_web/
-    const base = mode === 'development' ? '/' : '/react_web/';
+    // For dev: use / (root), for production: use / (root)
+    const base = '/';
     return {
       base: base,
       server: {
