@@ -1,6 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Phone, Mail, MapPin, Send, ChevronDown } from 'lucide-react';
 
+interface ImportMetaEnv {
+  readonly BASE_URL: string;
+}
+
+declare global {
+  interface ImportMeta {
+    readonly env: ImportMetaEnv;
+  }
+}
+
 interface Country {
   code: string;
   prefix: string;
