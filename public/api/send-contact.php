@@ -45,14 +45,14 @@ function encodeSubject($subject) {
 function logContact($data, $status, $message = '') {
     $log_dir = sys_get_temp_dir() . '/ard_interior_logs';
     if (!is_dir($log_dir)) {
-        @mkdir($log_dir, 0777, true);
-        chmod($log_dir, 0777);
+        @mkdir($log_dir, 0755, true);
+        @chmod($log_dir, 0755);
     }
     
     $log_file = $log_dir . '/contact_' . date('Y-m-d') . '.log';
     $log_entry = date('Y-m-d H:i:s') . ' | ' . $status . ' | ' . $data['email'] . ' | ' . $data['name'] . ' | ' . $message . "\n";
     @file_put_contents($log_file, $log_entry, FILE_APPEND);
-    @chmod($log_file, 0666);
+    @chmod($log_file, 0644);
 }
 
 if (!checkRateLimit()) {
@@ -259,26 +259,36 @@ $confirmationContent = generateConfirmationEmailHTML($data);
 // Admin email
 $adminEmail = 'info@ardinterier.sk';
 $adminSubject = encodeSubject('Nová správa: ' . $data['name']);
+$senderEmail = 'info@ardinterier.sk';
+$senderName = 'ARD Interier';
+$encodedSenderName = encodeSubject($senderName);
 $headers = "MIME-Version: 1.0\r\n";
 $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-$headers .= "From: noreply@ardinterier.sk\r\n";
-$headers .= "Return-Path: noreply@ardinterier.sk\r\n";
+$headers .= "From: {$encodedSenderName} <{$senderEmail}>\r\n";
+$headers .= "Return-Path: {$senderEmail}\r\n";
 $headers .= "Reply-To: " . $data['email'] . "\r\n";
 
-$adminMailSent = @mail($adminEmail, $adminSubject, $htmlContent, $headers);
+$adminMailSent = mail($adminEmail, $adminSubject, $htmlContent, $headers, "-f {$senderEmail}");
+$adminMailError = $adminMailSent ? '' : (error_get_last()['message'] ?? 'unknown error');
 
 // Customer confirmation
 $customerEmail = $data['email'];
 $customerSubject = encodeSubject('Potvrdenie - vaša správa bola prijatá');
 $customerHeaders = "MIME-Version: 1.0\r\n";
 $customerHeaders .= "Content-type: text/html; charset=UTF-8\r\n";
-$customerHeaders .= "From: noreply@ardinterier.sk\r\n";
-$customerHeaders .= "Return-Path: noreply@ardinterier.sk\r\n";
+$customerHeaders .= "From: {$encodedSenderName} <{$senderEmail}>\r\n";
+$customerHeaders .= "Return-Path: {$senderEmail}\r\n";
 $customerHeaders .= "Reply-To: info@ardinterier.sk\r\n";
 
-$customerMailSent = @mail($customerEmail, $customerSubject, $confirmationContent, $customerHeaders);
+$customerMailSent = mail($customerEmail, $customerSubject, $confirmationContent, $customerHeaders, "-f {$senderEmail}");
+$customerMailError = $customerMailSent ? '' : (error_get_last()['message'] ?? 'unknown error');
 
-logContact($data, 'DEBUG', "Admin: " . ($adminMailSent ? 'OK' : 'FAIL') . " | Customer: " . ($customerMailSent ? 'OK' : 'FAIL'));
+logContact(
+    $data,
+    'DEBUG',
+    "Admin: " . ($adminMailSent ? 'OK' : "FAIL ({$adminMailError})") .
+    " | Customer: " . ($customerMailSent ? 'OK' : "FAIL ({$customerMailError})")
+);
 
 if ($adminMailSent && $customerMailSent) {
     logContact($data, 'SUCCESS');
