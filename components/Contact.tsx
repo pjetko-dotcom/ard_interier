@@ -95,7 +95,8 @@ export const Contact: React.FC = () => {
     const fullPhoneNumber = `${selectedCountry.prefix} ${formData.phoneSuffix.replace(/\s/g, '')}`;
     
     try {
-      const response = await fetch('/api/send-contact.php', {
+      const apiUrl = `${import.meta.env.BASE_URL}api/send-contact.php`;
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
