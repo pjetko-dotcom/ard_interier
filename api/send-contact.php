@@ -157,42 +157,96 @@ function generateContactEmailHTML($data) {
 }
 
 function generateConfirmationEmailHTML($data) {
+    $phone_section = '';
+    if (!empty($data['phone'])) {
+        $phone_section = "
+                    <div class='info-row'>
+                        <div class='label'>Váš telefón:</div>
+                        <div class='value'>{$data['phone']}</div>
+                    </div>";
+    }
+    
     return "
     <!DOCTYPE html>
     <html>
     <head>
         <meta charset='UTF-8'>
         <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif; }
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif; margin: 0; padding: 0; }
             .container { max-width: 600px; margin: 0 auto; background: #faf5f1; padding: 20px; }
-            .header { background: linear-gradient(135deg, #a27d4f 0%, #8a6a42 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
-            .header h1 { margin: 0; font-size: 28px; }
-            .content { background: white; padding: 30px; }
-            .footer { background: #faf5f1; padding: 20px; text-align: center; color: #999; font-size: 12px; border-radius: 0 0 8px 8px; }
+            .header { background: linear-gradient(135deg, #a27d4f 0%, #8a6a42 100%); color: white; padding: 40px 30px; text-align: center; border-radius: 8px 8px 0 0; }
+            .header h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 600; }
+            .header-subtitle { margin: 0; font-size: 14px; opacity: 0.95; }
+            .content { background: white; padding: 40px 30px; }
+            .section { margin-bottom: 35px; }
+            .section-title { font-size: 16px; font-weight: 700; color: #a27d4f; border-bottom: 2px solid #a27d4f; padding-bottom: 12px; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.5px; }
+            .info-row { margin-bottom: 16px; }
+            .label { font-weight: 700; color: #333; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: #a27d4f; }
+            .value { color: #333; margin-top: 6px; font-size: 14px; line-height: 1.5; }
+            .message-box { background: #faf5f1; padding: 20px; border-left: 4px solid #a27d4f; border-radius: 4px; }
+            .message-box .label { margin-bottom: 8px; }
+            .message-box .value { white-space: pre-wrap; line-height: 1.7; color: #333; }
+            .contact-section { background: linear-gradient(135deg, #f5ede4 0%, #faf5f1 100%); padding: 25px; border-radius: 6px; margin-top: 30px; }
+            .contact-info { display: table; width: 100%; }
+            .contact-item { display: table-cell; padding: 0 15px; }
+            .contact-item:first-child { padding-left: 0; }
+            .contact-item:last-child { padding-right: 0; }
+            .contact-item-label { font-size: 11px; color: #a27d4f; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+            .contact-item-value { font-size: 14px; color: #333; font-weight: 600; }
+            .timestamp { margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #999; text-align: center; }
+            .footer { background: #faf5f1; padding: 25px 30px; text-align: center; color: #999; font-size: 11px; border-radius: 0 0 8px 8px; border-top: 1px solid #e8dfd9; }
+            .footer-text { margin: 0; }
         </style>
     </head>
     <body>
         <div class='container'>
             <div class='header'>
                 <h1>✓ Vaša správa bola prijatá!</h1>
+                <p class='header-subtitle'>Ďakujeme za kontakt. Naš tím sa s vami čoskoro skontaktuje.</p>
             </div>
             
             <div class='content'>
-                <p>Ďakujeme vám za vašu správu! Naš tím sa s vami čoskoro skontaktuje.</p>
+                <div class='section'>
+                    <div class='section-title'>Vaše údaje</div>
+                    <div class='info-row'>
+                        <div class='label'>Meno</div>
+                        <div class='value'>{$data['name']}</div>
+                    </div>
+                    <div class='info-row'>
+                        <div class='label'>Email</div>
+                        <div class='value'><a href='mailto:{$data['email']}' style='color: #a27d4f; text-decoration: none;'>{$data['email']}</a></div>
+                    </div>
+                    {$phone_section}
+                </div>
                 
-                <h3 style='color: #a27d4f;'>Detaily vašej správy:</h3>
-                <p><strong>Vaše meno:</strong> {$data['name']}</p>
-                <p style='white-space: pre-wrap; line-height: 1.6;'><strong>Vaša správa:</strong><br/>{$data['message']}</p>
+                <div class='section'>
+                    <div class='message-box'>
+                        <div class='label'>Vaša správa:</div>
+                        <div class='value'>{$data['message']}</div>
+                    </div>
+                </div>
                 
-                <hr style='border: none; border-top: 1px solid #ddd; margin: 25px 0;' />
+                <div class='contact-section'>
+                    <div class='section-title' style='margin-bottom: 15px; border-bottom: none; margin-top: 0;'>Kontaktujte nás</div>
+                    <div class='contact-info'>
+                        <div class='contact-item'>
+                            <div class='contact-item-label'>Email</div>
+                            <div class='contact-item-value'><a href='mailto:info@ardinterier.sk' style='color: #a27d4f; text-decoration: none;'>info@ardinterier.sk</a></div>
+                        </div>
+                        <div class='contact-item'>
+                            <div class='contact-item-label'>Telefón</div>
+                            <div class='contact-item-value'><a href='tel:+421917925011' style='color: #a27d4f; text-decoration: none;'>+421 917 925 011</a></div>
+                        </div>
+                    </div>
+                </div>
                 
-                <p style='color: #888; font-size: 12px;'>
-                    Ak máte ďalšie otázky, napíšte nám na <strong>info@ardinterier.sk</strong> alebo nám zavolajte na <strong>+421 917 925 011</strong>.
-                </p>
+                <div class='timestamp'>
+                    Vaša správa bola prijatá: <strong>" . date('d.m.Y v H:i:s', time()) . "</strong>
+                </div>
             </div>
             
             <div class='footer'>
-                <p>© 2026 ARD Interiér. Všetky práva vyhradené.</p>
+                <p class='footer-text'>© 2026 ARD Interiér | Interiérový dizajn a realizácia<br/>Všetky práva vyhradené.</p>
             </div>
         </div>
     </body>
