@@ -159,7 +159,7 @@ export const Contact: React.FC = () => {
                   <h4 className="text-lg font-bold text-stone-800">Telefón</h4>
                   <p className="text-sm text-stone-500 mt-1">Radoslav Tkáč</p>
                   <p className="text-stone-600 mt-1 font-medium"><a href="tel:+421917925011" className="hover:text-wood-600 transition-colors">+421 917 925 011</a></p>
-                  <p className="text-sm text-stone-400 mt-1">Po-Pi: 8:00 - 17:00</p>
+                  <p className="text-sm text-stone-400 mt-1">Po-Pi: 8:00 - 16:00</p>
                 </div>
               </div>
 
